@@ -1,0 +1,89 @@
+<div *ngIf="item && form">
+    <div *ngIf="item.id">
+        <p-tabMenu [model]="tabs" [activeItem]="tab"></p-tabMenu>
+        <br/>
+    </div>
+    <form (submit)="onSubmit()" [hidden]="tab.id !== 'common'">
+        <fieldset [disabled]="loading">
+            <div class="ui-g-12">
+                <label class="app-label">Название</label>
+                <input [(ngModel)]="item.name"
+                       [appServerside]="formErrors"
+                       type="text"
+                       #nameCtrl="ngModel"
+                       name="name"
+                       class="ui-g-12" pInputText placeholder="">
+                <app-field-errors [field]="nameCtrl"></app-field-errors>
+            </div>
+            <div class="ui-g-12">
+                <app-suggestions-input
+                        name="fitnessCoach"
+                        #fitnessCoachCtrl="ngModel"
+                        header="Выбирите тренера"
+                        [(ngModel)]="item.fitnessCoach"
+                        [appServerside]="formErrors"
+                        [suggestionService]="fitnessCoachService"
+                ></app-suggestions-input>
+                <app-field-errors [field]="fitnessCoachCtrl"></app-field-errors>
+            </div>
+            <div class="ui-g-12">
+                <label class="app-label">Описание</label>
+                <textarea [(ngModel)]="item.description"
+                          [appServerside]="formErrors"
+                          type="text"
+                          #descriptionCtrl="ngModel"
+                          name="description"
+                          class="ui-g-12" pInputText placeholder=""></textarea>
+                <app-field-errors [field]="descriptionCtrl"></app-field-errors>
+            </div>
+            <div class="ui-g-12">
+                <button type="submit" label="Сохранить" icon="fa fa-save" pButton></button>
+                <div style="width: 28px; display: inline-block">
+                    <app-spinner *ngIf="loading"></app-spinner>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <form (submit)="sendMessage()" [hidden]="tab.id !== 'message'">
+        <fieldset [disabled]="loading">
+            <div class="ui-g-12">
+                <p>В сообщениях можно использовать следующие переменные:</p>
+                <ul>
+                    <li>name - ФИО клиента</li>
+                    <li>birthDate - дата рождения клиента</li>
+                    <li>email - email клиента</li>
+                    <li>phone - телефон клиента</li>
+                    <li>coach - ФИО тренера занятия</li>
+                    <li>groupClass - название занятия</li>
+                </ul>
+                <p>Синтаксис для использования переменный: {{'{'}}{{'{'}}var_name{{'}'}}{{'}'}}</p>
+            </div>
+            <div class="ui-g-12">
+                <label class="app-label">Email</label>
+                <textarea [(ngModel)]="message.email"
+                          [appServerside]="messageFormErrors"
+                          type="text"
+                          #emailCtrl="ngModel"
+                          name="email"
+                          class="ui-g-12" pInputText placeholder=""></textarea>
+                <app-field-errors [field]="emailCtrl"></app-field-errors>
+            </div>
+            <div class="ui-g-12">
+                <label class="app-label">SMS</label>
+                <textarea [(ngModel)]="message.sms"
+                          [appServerside]="messageFormErrors"
+                          type="text"
+                          #smsCtrl="ngModel"
+                          name="sms"
+                          class="ui-g-12" pInputText placeholder=""></textarea>
+                <app-field-errors [field]="smsCtrl"></app-field-errors>
+            </div>
+            <div class="ui-g-12">
+                <button type="submit" label="Отправить" icon="fa fa-save" pButton></button>
+                <div style="width: 28px; display: inline-block">
+                    <app-spinner *ngIf="loading"></app-spinner>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

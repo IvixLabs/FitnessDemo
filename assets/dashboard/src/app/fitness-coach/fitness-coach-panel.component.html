@@ -1,0 +1,93 @@
+<div *ngIf="item && form">
+    <form #f="ngForm" (submit)="onSubmit($event, f)">
+        <!--<div>-->
+            <!--<p-tabMenu [model]="tabs" [activeItem]="tab"></p-tabMenu>-->
+            <!--<br/>-->
+        <!--</div>-->
+        <div [hidden]="tab.id !== 'common'">
+            <fieldset [disabled]="loading">
+                <div class="ui-g-12">
+                    <label class="app-label">Фамилия</label>
+                    <input [(ngModel)]="item.lastName"
+                           [appServerside]="formErrors"
+                           type="text"
+                           #firstNameCtrl="ngModel"
+                           name="firstName"
+                           class="ui-g-12" pInputText placeholder="Иванов">
+                    <app-field-errors [field]="firstNameCtrl"></app-field-errors>
+                </div>
+                <div class="ui-g-12">
+                    <label class="app-label">Имя</label>
+                    <input [(ngModel)]="item.firstName"
+                           [appServerside]="formErrors"
+                           type="text"
+                           #lastNameCtrl="ngModel"
+                           name="lastName"
+                           class="ui-g-12" pInputText placeholder="Иван">
+                    <app-field-errors [field]="lastNameCtrl"></app-field-errors>
+                </div>
+                <div class="ui-g-12">
+                    <label class="app-label">Отчество</label>
+                    <input [(ngModel)]="item.middleName"
+                           [appServerside]="formErrors"
+                           type="text"
+                           #middleNameCtrl="ngModel"
+                           name="middleName"
+                           class="ui-g-12" pInputText placeholder="Иванович">
+                    <app-field-errors [field]="middleNameCtrl"></app-field-errors>
+                </div>
+                <!--
+                <div class="ui-g-12">
+                    <label class="app-label">Username</label>
+                    <input [(ngModel)]="item.username"
+                           [appServerside]="formErrors"
+                           type="text"
+                           #usernameCtrl="ngModel"
+                           name="username"
+                           class="ui-g-12" pInputText placeholder="Username">
+                    <app-field-errors [field]="usernameCtrl"></app-field-errors>
+                </div>
+                <div class="ui-g-12">
+                    <label class="app-label">Email</label>
+                    <input [(ngModel)]="item.email"
+                           [appServerside]="formErrors"
+                           type="text"
+                           #emailCtrl="ngModel"
+                           name="email"
+                           class="ui-g-12" pInputText placeholder="mail@mail.tld">
+                    <app-field-errors [field]="emailCtrl"></app-field-errors>
+                </div>
+                <div class="ui-g-12">
+                    <label class="app-label">Password</label>
+                    <input [(ngModel)]="item.password"
+                           [appServerside]="formErrors"
+                           #passwordCtrl="ngModel"
+                           name="password"
+                           type="password"
+                           class="ui-g-12" pInputText placeholder="Password">
+                    <app-field-errors [field]="passwordCtrl"></app-field-errors>
+                </div>
+                <div class="ui-g-12">
+                    <label class="app-label">Author</label>
+                    <p-autoComplete [(ngModel)]="item.author"
+                                    name="author"
+                                    type="text"
+                                    [appServerside]="formErrors"
+                                    [suggestions]="authors"
+                                    #authorCtrl="ngModel"
+                                    field="name"
+                                    styleClass="p-autocomplete-full-width"
+                                    (completeMethod)="searchAuthors($event)"></p-autoComplete>
+                    <app-field-errors [field]="authorCtrl"></app-field-errors>
+                </div>
+                -->
+                <div class="ui-g-12">
+                    <button type="submit" label="Save" icon="fa fa-save" pButton></button>
+                    <div style="width: 28px; display: inline-block">
+                        <app-spinner *ngIf="loading"></app-spinner>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+</div>

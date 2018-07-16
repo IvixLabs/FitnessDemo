@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+php $DIR/console doctrine:database:create
+php $DIR/console doctrine:schema:create
+php $DIR/console fos:user:create admin admin@admin.ad admin
+php $DIR/console fos:user:activate admin
+php $DIR/console fos:user:promote admin ROLE_ADMIN

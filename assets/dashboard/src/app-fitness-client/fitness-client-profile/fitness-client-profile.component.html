@@ -1,0 +1,42 @@
+<div class="ui-g dashboard">
+    <div class="card">
+        <img *ngIf="profile.photoUrl" [src]="profile.photoUrl" style="max-width: 200px"/>
+        <h2>{{profile.name}}</h2>
+        <p>Email: {{profile.email}}</p>
+        <p>Телефон: {{profile.cellPhone}}</p>
+        <p>Дата рождения: {{profile.birthDate}}</p>
+        <p>Пол: {{profile.gender}}</p>
+    </div>
+    <div class="card">
+        <form #f="ngForm" (submit)="onSubmit($event, f)">
+            <fieldset [disabled]="loading">
+                <div class="ui-g-12">
+                    <label class="app-label">Пароль</label>
+                    <input [(ngModel)]="changePassword.password"
+                           [appServerside]="formErrors"
+                           type="password"
+                           #passwordCtrl="ngModel"
+                           name="password"
+                           class="ui-g-12" pInputText>
+                    <app-field-errors [field]="passwordCtrl"></app-field-errors>
+                </div>
+                <div class="ui-g-12">
+                    <label class="app-label">Повтор пароля</label>
+                    <input [(ngModel)]="changePassword.repeatPassword"
+                           [appServerside]="formErrors"
+                           type="password"
+                           #repeatPasswordCtrl="ngModel"
+                           name="repeatPassword"
+                           class="ui-g-12" pInputText>
+                    <app-field-errors [field]="repeatPasswordCtrl"></app-field-errors>
+                </div>
+                <div class="ui-g-12">
+                    <button type="submit" label="Save" icon="fa fa-save" pButton></button>
+                    <div style="width: 28px; display: inline-block">
+                        <app-spinner *ngIf="loading"></app-spinner>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

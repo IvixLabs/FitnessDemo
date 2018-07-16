@@ -1,0 +1,21 @@
+<div class="ui-inputgroup">
+    <div style="flex-grow:1">
+        <p-autoComplete
+                        [(ngModel)]="value"
+                        type="text"
+                        [multiple]="multiple"
+                        [suggestions]="suggestions"
+                        field="name"
+                        styleClass="p-autocomplete-full-width"
+                        (completeMethod)="searchSuggestions($event)"></p-autoComplete>
+    </div>
+    <app-suggestions-modal
+            [multiple]="multiple"
+            #suggestionsModal
+            [header]="header"
+            [items]="suggestionList"
+            [total]="suggestionListTotal"
+            (lazyLoad)="loadSuggestions($event)"
+            [(value)]="value"></app-suggestions-modal>
+    <button pButton type="button" icon="fa fa-list" (click)="suggestionsModal.toggle()"></button>
+</div>

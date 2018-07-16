@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html style="height: auto">
+
+<head>
+    <script>document.write('<base href="' + document.location + '" />');</script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <title>PrimeNG - Paradise - Login</title>
+
+    <link rel="stylesheet" type="text/css" href="/app/assets/theme/theme-blue.css?1">
+    <link rel="stylesheet" type="text/css" href="/app/assets/layout/css/layout-default.css?1">
+    <link rel="stylesheet" type="text/css" href="/app/assets/pages/primeng.min.css">
+</head>
+
+<body class="login-body">
+<div class="login-panel ui-fluid">
+    <div class="ui-g">
+        <div class="ui-g-12 logo-container">
+            <img src="/app/assets/layout/images/logo-gray.png" class="logo">
+            {#<img src="/app/assets/layout/images/login/icon-login.png" class="login-icon">#}
+            <h2>Установите пароль для входа</h2>
+        </div>
+        {% if error %}
+            <div class="ui-g-12">Пароли должны совпадать и не должны быть пустыми</div>
+        {% endif %}
+        <form method="post">
+            <div class="ui-g-12">
+                <label for="password">Пароль</label>
+                <div class="input-wrapper">
+                    <input type="password" autocomplete="off" name="clientPassword" class="ui-inputtext ui-widget">
+                    <img src="/app/assets/layout/images/login/lock.png" class="lock-icon">
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <label for="password">Повтор пароля</label>
+                <div class="input-wrapper">
+                    <input type="password" autocomplete="off" name="clientRepeatPassword" class="ui-inputtext ui-widget">
+                    <img src="/app/assets/layout/images/login/lock.png" class="lock-icon">
+                </div>
+            </div>
+            <div class="ui-g-12 button-container">
+                <button type="submit" name="_submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only blue-btn raised-btn">
+                    <span class="ui-button-text ui-c">Сохранить</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

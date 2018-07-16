@@ -1,0 +1,6 @@
+enqueue:
+    transport:
+        default: "rabbitmq_amqp"
+        rabbitmq_amqp:
+            delay_strategy: delayed_message_plugin
+    client: ~

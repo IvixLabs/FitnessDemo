@@ -1,0 +1,56 @@
+<div *ngIf="item && form">
+    <form #f="ngForm" (submit)="onSubmit($event, f)">
+
+        <div>
+            <p-tabMenu [model]="tabs" [activeItem]="tab"></p-tabMenu>
+            <br/>
+        </div>
+        <div [hidden]="tab.id !== 'roles'">
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-4" *ngFor="let role of form.roles" style="white-space: nowrap">
+                    <p-checkbox [name]="'role['+index+']'" [value]="role" [label]="role" [(ngModel)]="item.roles"></p-checkbox>
+                </div>
+            </div>
+        </div>
+        <div [hidden]="tab.id !== 'user'">
+            <fieldset [disabled]="loading">
+                <div class="ui-g-12">
+                    <label class="app-label">Username</label>
+                    <input [(ngModel)]="item.username"
+                           [appServerside]="formErrors"
+                           type="text"
+                           #usernameCtrl="ngModel"
+                           name="username"
+                           class="ui-g-12" pInputText placeholder="Username">
+                    <app-field-errors [field]="usernameCtrl"></app-field-errors>
+                </div>
+                <div class="ui-g-12">
+                    <label class="app-label">Email</label>
+                    <input [(ngModel)]="item.email"
+                           [appServerside]="formErrors"
+                           type="text"
+                           #emailCtrl="ngModel"
+                           name="email"
+                           class="ui-g-12" pInputText placeholder="mail@mail.tld">
+                    <app-field-errors [field]="emailCtrl"></app-field-errors>
+                </div>
+                <div class="ui-g-12">
+                    <label class="app-label">Password</label>
+                    <input [(ngModel)]="item.password"
+                           [appServerside]="formErrors"
+                           #passwordCtrl="ngModel"
+                           name="password"
+                           type="password"
+                           class="ui-g-12" pInputText placeholder="Password">
+                    <app-field-errors [field]="passwordCtrl"></app-field-errors>
+                </div>
+                <div class="ui-g-12">
+                    <button type="submit" label="Save" icon="fa fa-save" pButton></button>
+                    <div style="width: 28px; display: inline-block">
+                        <app-spinner *ngIf="loading"></app-spinner>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+</div>

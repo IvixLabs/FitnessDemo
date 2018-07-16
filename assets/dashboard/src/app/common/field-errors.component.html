@@ -1,0 +1,5 @@
+<ul class="ui-errors" *ngIf="field.invalid && field.errors.serverside">
+    <li *ngFor="let errorString of field.errors.serverside">
+        {{errorString}}
+    </li>
+</ul>

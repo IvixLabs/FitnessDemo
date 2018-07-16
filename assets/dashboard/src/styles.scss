@@ -1,0 +1,72 @@
+/* You can add global styles to this file, and also import other style files */
+$primaryColor: #000000;
+@import "./assets/sass/theme/_variables";
+button {
+  margin: 0;
+}
+
+.ui-errors {
+  color: $inputInvalidBorderColor;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+/* Validation */
+.ui-inputtext.ng-invalid,
+p-dropdown.ng-invalid > .ui-dropdown,
+p-autocomplete.ng-invalid > .ui-autocomplete > .ui-inputtext,
+p-calendar.ng-invalid > .ui-inputtext,
+p-chips.ng-invalid > .ui-inputtext,
+p-inputmask.ng-invalid > .ui-inputtext,
+p-checkbox.ng-invalid .ui-chkbox-box,
+p-radiobutton.ng-invalid .ui-radiobutton-box,
+p-inputswitch.ng-invalid .ui-inputswitch,
+p-listbox.ng-invalid .ui-inputtext,
+p-multiselect.ng-invalid > .ui-multiselect,
+p-spinner.ng-invalid > .ui-inputtext,
+p-selectbutton.ng-invalid .ui-button,
+p-togglebutton.ng-invalid .ui-button {
+  border-color: $inputInvalidBorderColor;
+}
+
+body {
+  .ui-inputtext:enabled {
+    &.ng-invalid {
+      background-color: $inputInvalidBgColor;
+
+      &:hover {
+        border-color: $inputInvalidBorderColor;
+      }
+
+      &:focus {
+        border-color: $inputInvalidBorderColor;
+        box-shadow: none;
+      }
+
+      &:active {
+        border-color: $inputInvalidBorderColor;
+      }
+    }
+  }
+}
+
+.app-label {
+  padding-bottom: 5px;
+  display: block;
+  font-weight: bold;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.ui-autocomplete.p-autocomplete-full-width {
+  width: 100%;
+}
+
+.ui-autocomplete.p-autocomplete-full-width .ui-inputtext{
+  width: 100%;
+}

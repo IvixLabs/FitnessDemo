@@ -1,0 +1,31 @@
+<div class="ui-g">
+    <div class="ui-g-12">
+        <p-dataTable [value]="items"
+                     [rows]="itemsPerPage"
+                     [paginator]="true"
+                     (onPage)="pageChanged($event)"
+                     (onFilter)="filterChanged($event)"
+                     (onSort)="sortingChanged($event)"
+                     [sortField]="sorting.field"
+                     [sortOrder]="sorting.order"
+                     [totalRecords]="totalItems"
+                     [lazy]="true"
+                     [rowsPerPageOptions]="[10,20,30]"
+        >
+            <p-column field="name" header="Название"></p-column>
+            <p-column field="fitnessCoachName" header="Тренер"></p-column>
+            <p-column field="subscribed" header="Подписка">
+                <ng-template let-item="rowData" pTemplate="body">
+                    <div class="ui-g form-group">
+                        <div class="ui-g-12">
+                            <p-inputSwitch onLabel="Подписан" offLabel="Отписан" [(ngModel)]="item.subscribed" (onChange)="changeSubscription(item)"></p-inputSwitch>
+                        </div>
+                        <div class="ui-g-12">
+                            <p-selectButton *ngIf="item.subscribed" [options]="subscriptionTypes" [(ngModel)]="item.subscriptionType" (onChange)="changeSubscription(item)"></p-selectButton>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-column>
+        </p-dataTable>
+    </div>
+</div>

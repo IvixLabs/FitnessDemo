@@ -1,0 +1,47 @@
+<div class="ui-g">
+    <div class="ui-g-12">
+        <p-menubar [model]="menuItems"></p-menubar>
+    </div>
+    <div class="ui-g-12">
+        <p-dataTable [value]="items"
+                     [rows]="itemsPerPage"
+                     [paginator]="true"
+                     (onPage)="pageChanged($event)"
+                     (onFilter)="filterChanged($event)"
+                     (onSort)="sortingChanged($event)"
+                     [sortField]="sorting.field"
+                     [sortOrder]="sorting.order"
+                     [totalRecords]="totalItems"
+                     [lazy]="true"
+                     [rowsPerPageOptions]="[10,20,30]"
+        >
+            <p-column [filter]="true" field="id" header="Id">
+                <ng-template let-item="rowData" pTemplate="body">
+                    <a [routerLink]="" (click)="updateItem(item.id)">{{item.id}}</a>
+                </ng-template>
+            </p-column>
+            <p-column [filter]="true" [sortable]="true" field="username" header="Username"></p-column>
+            <p-column [filter]="true" [sortable]="true" field="email" header="Email"></p-column>
+            <p-column>
+                <ng-template let-item="rowData" pTemplate="body">
+                    <button *ngIf="currentUser && currentUser.id !== item.id" pButton type="button"
+                            class="ui-button-danger"
+                            icon="fa fa-fw fa-trash"
+                            (click)="deleteItem(item.id)" label="Delete"></button>
+                </ng-template>
+            </p-column>
+        </p-dataTable>
+    </div>
+</div>
+<p-confirmDialog></p-confirmDialog>
+
+<p-dialog *ngIf="displayItemDialog"
+        [positionTop]="50"
+        [width]="500"
+        (onShow)="itemPanel.initItem()"
+        (onHide)="itemPanel.clearItem()"
+        [header]="getItemDialogTitle()"
+        [(visible)]="displayItemDialog"
+        [draggable]="false" [resizable]="false" modal="modal" [responsive]="true">
+    <app-user-panel #itemPanel [itemId]="itemIdSelected" (update)="itemUpdated()" (create)="itemCreated($event)"></app-user-panel>
+</p-dialog>

@@ -1,0 +1,116 @@
+<div *ngIf="item && form">
+    <form #f="ngForm" (submit)="onSubmit($event, f)">
+        <!--<div>-->
+        <!--<p-tabMenu [model]="tabs" [activeItem]="tab"></p-tabMenu>-->
+        <!--<br/>-->
+        <!--</div>-->
+        <div [hidden]="tab.id !== 'common'">
+            <fieldset [disabled]="loading">
+
+                <div class="ui-g-12" *ngIf="item.photo">
+                    <img style="max-width: 100px" [src]="entityService.getFitnessClientPhotoUrl(item, photoDate)"/>
+                    <br/>
+                    <button pButton type="button" label="Удалить" (click)="removePhoto(item)" class="ui-button-danger"></button>
+                </div>
+                <div class="ui-g-12" *ngIf="item.id">
+                    <p-fileUpload
+                            [auto]="true"
+                            mode="basic"
+                            name="photo"
+                            [url]="entityService.getFitnessClientPhotoUploadUrl(item)"
+                            accept="image/*"
+                            [maxFileSize]="10000000"
+                            (onUpload)="photoUploaded($event)"
+                            chooseLabel="Выбрать"></p-fileUpload>
+                </div>
+
+                <div class="ui-g-12">
+                    <label class="app-label">Фамилия</label>
+                    <input [(ngModel)]="item.lastName"
+                           [appServerside]="formErrors"
+                           type="text"
+                           #firstNameCtrl="ngModel"
+                           name="firstName"
+                           class="ui-g-12" pInputText placeholder="Иванов">
+                    <app-field-errors [field]="firstNameCtrl"></app-field-errors>
+                </div>
+                <div class="ui-g-12">
+                    <label class="app-label">Имя</label>
+                    <input [(ngModel)]="item.firstName"
+                           [appServerside]="formErrors"
+                           type="text"
+                           #lastNameCtrl="ngModel"
+                           name="lastName"
+                           class="ui-g-12" pInputText placeholder="Иван">
+                    <app-field-errors [field]="lastNameCtrl"></app-field-errors>
+                </div>
+                <div class="ui-g-12">
+                    <label class="app-label">Отчество</label>
+                    <input [(ngModel)]="item.middleName"
+                           [appServerside]="formErrors"
+                           type="text"
+                           #middleNameCtrl="ngModel"
+                           name="middleName"
+                           class="ui-g-12" pInputText placeholder="Иванович">
+                    <app-field-errors [field]="middleNameCtrl"></app-field-errors>
+                </div>
+                <div class="ui-g-12">
+                    <label class="app-label">Дата рождения</label>
+                    <p-calendar
+                            appendTo="body"
+                            [locale]="locale"
+                            dateFormat="dd-mm-yy"
+                            placeholder="дд-мм-гггг"
+                            name="birthDate"
+                            #birthDateCtrl="ngModel"
+                            [appServerside]="formErrors"
+                            [(ngModel)]="item.birthDate"></p-calendar>
+                    <app-field-errors [field]="birthDateCtrl"></app-field-errors>
+                </div>
+                <div class="ui-g-12">
+                    <label class="app-label">Пол</label>
+                    <p-dropdown
+                            dataKey="value"
+                            appendTo="body"
+                            name="gender"
+                            #genderCtrl="ngModel"
+                            [appServerside]="formErrors"
+                            [options]="form.genders"
+                            [(ngModel)]="item.gender"
+                            placeholder="м/ж"
+                            optionLabel="name"
+                            [showClear]="true"></p-dropdown>
+                    <app-field-errors [field]="genderCtrl"></app-field-errors>
+                </div>
+                <div class="ui-g-12" *ngIf="item.id === undefined">
+                    <label class="app-label">Email</label>
+                    <input [(ngModel)]="item.email"
+                           [appServerside]="formErrors"
+                           type="text"
+                           #emailCtrl="ngModel"
+                           name="email"
+                           class="ui-g-12" pInputText placeholder="name@mail.tld">
+                    <app-field-errors [field]="emailCtrl"></app-field-errors>
+                </div>
+                <div class="ui-g-12">
+                    <label class="app-label">Телефон</label>
+                    <p-inputMask
+                            [(ngModel)]="item.cellPhone"
+                            [appServerside]="formErrors"
+                            #cellPhoneCtrl="ngModel"
+                            name="cellPhone"
+                            mask="+9(999)999-99-99"
+                            placeholder="+X(XXX)XXX-XX-XX"
+                    ></p-inputMask>
+                    <app-field-errors [field]="cellPhoneCtrl"></app-field-errors>
+                </div>
+                <div class="ui-g-12">
+                    <button type="submit" label="Save" icon="fa fa-save" pButton></button>
+                    <div style="width: 28px; display: inline-block">
+                        <app-spinner *ngIf="loading"></app-spinner>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+</div>

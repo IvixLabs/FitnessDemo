@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% block base %}<base href="/fitness-client/">{% endblock %}
+{% block stylesheets %}
+    <link id="theme-css" rel="stylesheet" type="text/css" href="{{ asset('app/assets/theme/theme-blue.css') }}">
+    <link id="layout-css" rel="stylesheet" type="text/css" href="{{ asset('app/assets/layout/css/layout-default.css') }}">
+{% endblock %}
+{% block body %}
+    <app-fitness-client-root>
+        <div class="splash-screen">
+            <div class="splash-screen-loader">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </app-fitness-client-root>
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">var MODULE='AppFitnessClientModule'</script>
+    <script type="text/javascript" src="{{ asset('app/runtime.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('app/polyfills.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('app/styles.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('app/scripts.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('app/vendor.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('app/main.js?'~'now'|date('YmdHjs')) }}"></script>
+{% endblock %}

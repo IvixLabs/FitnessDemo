@@ -1,0 +1,14 @@
+monolog:
+    channels: ['sms_log_channel']
+    handlers:
+        main:
+            type: stream
+            path: "%kernel.logs_dir%/main.log"
+            level: debug
+            channels: ['!sms_log_channel']
+        sms_log_handler:
+            type: stream
+            path: "%kernel.logs_dir%/sms.log"
+            level: debug
+            channels: ['sms_log_channel']
+            bubble: false

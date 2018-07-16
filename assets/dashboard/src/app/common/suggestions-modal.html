@@ -1,0 +1,31 @@
+<p-dialog *ngIf="isShow"
+          [header]="header"
+          [width]="400"
+          appendTo="body"
+          (onHide)="isShow=false"
+          [(visible)]="isShow"
+          [draggable]="false"
+          [resizable]="false"
+          [modal]="true"
+>
+    <p-dataView *ngIf="isShow"
+            styleClass="ui-dataview-hide-header"
+            [value]="items"
+            [paginator]="true"
+            [rows]="3"
+            paginatorPosition="bottom"
+            [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="total"
+    >
+        <ng-template let-item pTemplate="listItem">
+            <div class="ui-g">
+                <div class="ui-g-6">
+                    {{item.name}}
+                </div>
+                <div class="ui-g-6" style="text-align: right; height: 40px">
+                    <button *ngIf="isItemSelected(item)" pButton  class="ui-button-danger" type="button" label="remove" (click)="remove(item)" ></button>
+                    <button *ngIf="!isItemSelected(item)" pButton type="button" label="select" (click)="select(item)" ></button>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataView>
+</p-dialog>

@@ -1,0 +1,9 @@
+<html>
+<head>
+    <title>Установка пароля</title>
+</head>
+<body>
+<h1>Здравствуйте, {{ fitnessClient.name }}.</h1>
+<p>Перейдите по <a href="{{ url('fitness_client_confirmation', {'token':fitnessClient.user.confirmationToken}) }}">ссылке</a> для утановки пароля</p>
+</body>
+</html>
