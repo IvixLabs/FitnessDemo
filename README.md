@@ -14,7 +14,7 @@ Better use Linux or Mac, Windows not tested.
 - Open new console window go to docker dir and run docker-compose up
 - Open new console window and run project_dir/bin/console server:run
 - Open new console window and run tail -f project_dir/var/log/sms.log
-- Open new console window and run project_dir/bin/init
+- Open new console window and run project_dir/bin/init and project_dir/bin/console enqueue:consume --setup-broker
 - Open web browser and open http://localhost:8000
 - Open web browser and open http://localhost:8025
 - Admin has login, password: admin:admin
