@@ -2,7 +2,6 @@
 ###> symfony/framework-bundle ###
 /.env
 /public/bundles/
-/var/
 /vendor/
 ###< symfony/framework-bundle ###
 
@@ -16,10 +15,6 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-pack ###
-
-###> app/dashboard ###
-/public/dashboard/
-###< app/dashboard ###
 
 ###> IDE
 /.idea
